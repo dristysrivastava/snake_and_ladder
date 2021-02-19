@@ -9,14 +9,28 @@ class GamePlan:
     def add_players(self, player, position=0):
         self.player_position = PlayerPosition(player, position)
 
-    def start_game(self):
-        game_round = 0
-        while game_round < 10:
-            dice_count = Dice.roll()
-            print(f"Dice roll value: {dice_count}")
+    def is_snake_there(self, pos):
+        for snake in self.board.snake_list:
+            if snake.start == pos:
+                print(f"snake is here at {pos} so updated position will be {snake.end}")
+                return snake.end
+
+    def find_new_position(self, curr_pos, dice_value):
+        new_pos = curr_pos + dice_value
+        pos = self.is_snake_there(new_pos)
+        if pos:
+            return pos
+        else:
+            return new_pos
+
+    def start_game(self, game_rounds):
+        game_count = 0
+        while game_count < game_rounds:
+            dice_value = Dice.roll()
+            print(f"Dice roll value: {dice_value}")
             curr_pos = self.player_position
-            new_pos = curr_pos.position + dice_count
+            new_pos = self.find_new_position(curr_pos.position, dice_value)
             print(new_pos)
             curr_pos.update_position(new_pos)
             print(self.player_position.player.name, 'moved from', curr_pos, 'to', new_pos)
-            game_round += 1
+            game_count += 1

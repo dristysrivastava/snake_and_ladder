@@ -9,6 +9,10 @@ class Player:
 class Board:
     def __init__(self, size=100):
         self.size = size
+        self.snake_list = []
+
+    def add_snake(self, snake):
+        self.snake_list.append(snake)
 
 
 class Dice:
@@ -24,3 +28,12 @@ class PlayerPosition:
 
     def update_position(self, new_position):
         self.position = new_position
+
+
+class Snake:
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+
+    def validate_snake_value(self):
+        return self.start > self.end
