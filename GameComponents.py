@@ -21,6 +21,12 @@ class Dice:
         return random.randint(1, 6)
 
 
+class CrookedDice:
+    @staticmethod
+    def roll():
+        return random.randrange(2, 7, 2)
+
+
 class PlayerPosition:
     def __init__(self, player, position):
         self.player = player

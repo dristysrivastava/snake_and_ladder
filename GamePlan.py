@@ -1,4 +1,4 @@
-from GameComponents import Dice, PlayerPosition
+from GameComponents import Dice, PlayerPosition, CrookedDice
 
 
 class GamePlan:
@@ -23,14 +23,17 @@ class GamePlan:
         else:
             return new_pos
 
-    def start_game(self, game_rounds):
+    def start_game(self, game_rounds, dice_choice):
         game_count = 0
+        final_position = 0
         while game_count < game_rounds:
-            dice_value = Dice.roll()
+            dice_value = Dice.roll() if dice_choice == "Dice" else CrookedDice.roll()
             print(f"Dice roll value: {dice_value}")
             curr_pos = self.player_position
             new_pos = self.find_new_position(curr_pos.position, dice_value)
             print(new_pos)
             curr_pos.update_position(new_pos)
             print(self.player_position.player.name, 'moved from', curr_pos, 'to', new_pos)
+            final_position = new_pos
             game_count += 1
+        return final_position
