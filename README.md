@@ -10,6 +10,8 @@ Test data: Add a snake at position 14 moving the player to position 7.
 ##3: Make A Crooked Dice
 A dice that only throws Even numbers. The can game can be started with normal dice or crooked dice.
 
+##4: Add a Green Snake
+A Green Snake can bite only once
 
 ## To run Game:
 `python RunGame.py`
