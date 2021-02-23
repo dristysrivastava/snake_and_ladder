@@ -25,7 +25,7 @@ class Dice:
         return random.randint(1, 6)
 
 
-class CrookedDice:
+class CrookedDice(Dice):
     @staticmethod
     def roll():
         return random.randrange(2, 7, 2)

@@ -1,6 +1,6 @@
 import unittest
 
-from GameComponents import Board, Player, PlayerPosition, Snake
+from GameComponents import Board, Player, PlayerPosition, Snake, GreenSnake
 from GamePlan import GamePlan
 
 
@@ -11,6 +11,7 @@ class TestGamePlan(unittest.TestCase):
         self.player_position = PlayerPosition(self.player.name, 0)
         self.game = GamePlan(self.board)
         self.snake = Snake(14, 7)
+        self.green_snake = GreenSnake(4, 2)
 
     def test_player_position(self):
         self.assertEqual(self.player_position.position, 0)
@@ -25,8 +26,9 @@ class TestGamePlan(unittest.TestCase):
 
     def test_is_snake_there(self):
         self.board.add_snake(self.snake)
+        self.board.add_snake(self.green_snake)
         self.assertEqual(self.game.is_snake_there(14), 7)
-        self.assertEqual(self.game.is_snake_there(4), None)
+        self.assertEqual(self.game.is_snake_there(4), 2)
 
     def test_new_position_after_snake(self):
         self.board.add_snake(self.snake)
