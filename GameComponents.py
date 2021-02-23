@@ -10,9 +10,13 @@ class Board:
     def __init__(self, size=100):
         self.size = size
         self.snake_list = []
+        self.green_snake_list = []
 
     def add_snake(self, snake):
         self.snake_list.append(snake)
+
+    def add_green_snake(self, green_snake):
+        self.green_snake_list.append(green_snake)
 
 
 class Dice:
@@ -43,3 +47,9 @@ class Snake:
 
     def validate_snake_value(self):
         return self.start > self.end
+
+
+class GreenSnake(Snake):
+    def __init__(self, start, end):
+        Snake.__init__(self, start, end)
+        self.already_bit = False

@@ -10,10 +10,21 @@ class GamePlan:
         self.player_position = PlayerPosition(player, position)
 
     def is_snake_there(self, pos):
+        end_pos = None
         for snake in self.board.snake_list:
             if snake.start == pos:
                 print(f"snake is here at {pos} so updated position will be {snake.end}")
-                return snake.end
+                end_pos = snake.end
+                break
+        if not end_pos:
+            for num, green_snake in enumerate(self.board.green_snake_list, start=0):
+                if green_snake.start == pos:
+                    if not self.board.green_snake_list[num].already_bit:
+                        self.board.green_snake_list[num].already_bit = True
+                        print(f"Green snake is here at {pos} so updated position will be {green_snake.end}")
+                        end_pos = green_snake.end
+                        break
+        return end_pos
 
     def find_new_position(self, curr_pos, dice_value):
         new_pos = curr_pos + dice_value

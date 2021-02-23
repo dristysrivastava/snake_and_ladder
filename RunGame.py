@@ -1,4 +1,4 @@
-from GameComponents import Board, Player, Snake
+from GameComponents import Board, Player, Snake, GreenSnake
 from GamePlan import GamePlan
 
 
@@ -10,6 +10,14 @@ class RunGame:
         snake = Snake(14, 7)
         if snake.validate_snake_value():
             board.add_snake(snake)
+
+        green_snake = GreenSnake(4, 3)
+        if green_snake.validate_snake_value():
+            board.add_green_snake(green_snake)
+
+        green_snake = GreenSnake(20, 5)
+        if green_snake.validate_snake_value():
+            board.add_green_snake(green_snake)
 
         player = Player("Test Player")
         game = GamePlan(board)
